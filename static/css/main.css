@@ -1,5 +1,23 @@
+@font-face {
+    font-family: "Shabnam";
+    font-display: auto;
+    font-style: normal;
+    font-weight: 400;
+    src: url("/font/Shabnam.woff2") format("woff2"),
+        url("/font/Shabnam.woff") format("woff");
+}
+  
+@font-face {
+    font-family: "Shabnam";
+    font-display: auto;
+    font-style: normal;
+    font-weight: 500;
+    src: url("/font/Shabnam-Medium.woff2") format("woff2"),
+        url("/font/Shabnam-Medium.woff") format("woff");
+}
+
 body {
-    font-family: "ubuntu", sans-serif;
+    font-family: "Shabnam", "ubuntu", sans-serif;
     font-weight: 400;
     color: #333;
     line-height: 1.6;
