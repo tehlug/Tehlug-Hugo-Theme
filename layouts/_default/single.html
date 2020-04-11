@@ -7,19 +7,48 @@
 
 		<div class="post-header">
 			<h1 class="title">{{ .Title }}</h1>
-			<div class="meta">Posted at &mdash; {{ dateFormat "Jan 2, 2006" .Date }}{{ if .Draft }} <span class="draft-label">DRAFT</span> {{ end }}</div>
 		</div>
 
 		<div class="markdown">
 			{{ .Content }}
 		</div>
 
+		{{ if (isset .Params "registerlink") }}
+			<a href="{{ .Params.RegisterLink }}" target="_blank">ثبت‌نام رایگان</a>
+		{{ end }}
+
+		{{ if (and (isset .Params "eventdate") (isset .Params "starttime") (isset .Params "endtime")) }}
+			<p>زمان برگزاری: {{ .Params.EventDate }}  از ساعت: {{ .Params.StartTime }} تا {{ .Params.EndTime }}</p>
+		{{ end }}
+
+		{{ if (isset .Params "address") }}
+			<p>آدرس: {{ .Params.Address }} </p>
+		{{ end }}
+
+		{{ if (and (isset .Params "lat") (isset .Params "lng")) }}
+			<a href="geo:{{ .Params.Lat }},{{ .Params.Lng }}" target="_blank">باز کردن نقشه</a>
+			<br>
+
+			<iframe class="map" frameborder= 0
+				src="https://www.openstreetmap.org/export/embed.html?bbox={{ sub .Params.Lng .Site.Params.MapView }},{{sub .Params.Lat .Site.Params.MapView }},{{add .Params.Lng .Site.Params.MapView }},{{add .Params.Lat .Site.Params.MapView }}&layer=mapnik&marker={{ .Params.Lat }},{{ .Params.Lng }}">
+			</iframe>
+		{{ end }}
+		
+
+		<div class="post-tags">
+			<nav class="nav tags">
+				<ul class="flat">
+					<li><a href="{{ "/location/" | relLangURL }}{{ . | urlize }}">{{ .Params.Location }}</a></li>
+				</ul>
+			</nav>		
+		</div>
+
 		<div class="post-tags">
 			{{ if ne .Type "page" }}
-				{{ if gt .Params.tags 0 }}
+				{{ if gt .Params.Speaker 0 }}
 					<nav class="nav tags">
 							<ul class="flat">
-								{{ range .Params.tags }}
+								{{ range .Params.Speaker }}
 								<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
 								{{ end }}
 							</ul>
@@ -27,28 +56,22 @@
 				{{ end }}
 			{{ end }}
 		</div>
-		{{- $.Scratch.Set "isDisqus" true -}}
 
-		<!-- Disable if content type is excluded in config -->
-		{{- if and (isset .Params "type") (in .Site.Params.disableDisqusTypes .Params.type) -}}
-		{{- $.Scratch.Set "isDisqus" false -}}
-		{{- end -}}
 
-		<!-- Check if content has flag to enable/disable disqus explicitly -->
-		{{- if and (isset .Params "disqus") (eq .Params.disqus false) -}}
-		{{- $.Scratch.Set "isDisqus" false -}}
-		{{- else if and (isset .Params "disqus") (eq .Params.disqus true) -}}
-		{{- $.Scratch.Set "isDisqus" true -}}
-		{{- end -}}
-
-		<!-- Check if disqus short name is given -->
-		{{ if not .Site.DisqusShortname }}
-		{{- $.Scratch.Set "isDisqus" false -}}
-		{{ end }}
-
-		{{- if eq ($.Scratch.Get "isDisqus") true -}}
-		{{- partial "disqus.html" . -}}
-		{{- end -}}
+		<div class="post-tags">
+			{{ if ne .Type "page" }}
+				{{ if gt .Params.Topic 0 }}
+					<nav class="nav tags">
+							<ul class="flat">
+								{{ range .Params.Topic }}
+								<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+								{{ end }}
+							</ul>
+					</nav>
+				{{ end }}
+			{{ end }}
+		</div>
+	
 	</div>
 	{{ partial "footer.html" . }}
 </body>
