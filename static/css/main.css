@@ -411,6 +411,17 @@ table th, table td {
     border: 1px solid #dddddd;
 }
 
+.map {
+    scrolling: "no";
+    marginheight: 0;
+    marginwidth: 0;
+    frameborder: 0;
+    width: 80%;
+    height: 300px;
+    margin: 0 auto;
+    display:block
+}
+
 @media (max-width: 767px) {
     body {
         padding: 20px;
