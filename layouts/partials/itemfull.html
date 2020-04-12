@@ -1,0 +1,83 @@
+<div class="post">
+	<a class="title" href="{{ .RelPermalink }}">{{.Title}}</a>
+	<br>
+	<span class="description">
+		جلسه {{ .Params.EventNumber }}
+	
+		{{ if isset .Params "eventdate" }}
+			در تاریخ: {{ .Params.EventDate }}
+		{{ end }}
+
+		{{ if (and (isset .Params "starttime") (isset .Params "endtime")) }}
+			از ساعت: {{ .Params.StartTime }} تا {{ .Params.EndTime }}
+		{{ end }}
+
+		{{ if isset .Params "location"  }}
+			در {{ .Params.Location }}
+		{{ end }}
+
+		برگزار میشود.
+
+		<br>
+
+		{{ if ne .Type "page" }}
+			{{ if gt .Params.Speaker 0 }}
+				{{ $count := sub (len .Params.Speaker) 1 }}
+				ارائه دهندگان
+				{{ range $index, $element :=  .Params.Speaker }}
+					<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+					{{ if ne $index  $count }}
+						و
+					{{ end }}
+
+				{{ end }}
+
+			{{ end }}
+
+		{{ end }}
+
+		<br>
+	
+		{{ if ne .Type "page" }}
+			{{ if gt .Params.Topic 0 }}
+				{{ $count := sub (len .Params.Topic) 1 }}
+				موضوعات
+				{{ range $index, $element :=  .Params.Topic }}
+					<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+					{{ if ne $index  $count }}
+						و
+					{{ end }}
+				
+				{{ end }}
+			
+			{{ end }}
+	
+		{{ end }}
+
+		<br><br>
+
+		{{ if (isset .Params "registerlink") }}
+			<a href="{{ .Params.RegisterLink }}" target="_blank">ثبت‌نام رایگان</a> </br>
+		{{ end }}
+		
+		<br>
+		
+		{{ if (isset .Params "address") }}
+			آدرس: {{ .Params.Address }}
+		{{ end }}
+
+		<br>
+
+		{{ if (and (isset .Params "lat") (isset .Params "lng")) }}
+			<a href="geo:{{ .Params.Lat }},{{ .Params.Lng }}" target="_blank">باز کردن نقشه</a>
+
+			<br><br>
+				
+			<iframe class="map" frameborder= 0
+				src="https://www.openstreetmap.org/export/embed.html?bbox={{ sub .Params.Lng .Site.Params.MapView }},{{sub .Params.Lat .Site.Params.MapView }},{{add .Params.Lng .Site.Params.MapView }},{{add .Params.Lat .Site.Params.MapView }}&layer=mapnik&marker={{ .Params.Lat }},{{ .Params.Lng }}">
+			</iframe>
+		{{ end }}
+
+	</span>
+
+</div>
