@@ -15,9 +15,9 @@
 
 	<nav class="nav">
 		<ul class="flat">
-			{{ range .Site.Menus.main }}
+			{{ range .Site.Params.Menu.Items }}
 			<li>
-				<a href="{{ .URL }}">{{ .Name }}</a>
+				<a href="{{ .url }}">{{ .title }}</a>
 			</li>
 			{{ end }}
 		</ul>
