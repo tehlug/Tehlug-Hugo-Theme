@@ -49,7 +49,7 @@
 					<nav class="nav tags">
 							<ul class="flat">
 								{{ range .Params.Speaker }}
-								<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+								<li><a href="{{ "/speaker/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
 								{{ end }}
 							</ul>
 					</nav>
@@ -64,7 +64,7 @@
 					<nav class="nav tags">
 							<ul class="flat">
 								{{ range .Params.Topic }}
-								<li><a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+								<li><a href="{{ "/topic/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
 								{{ end }}
 							</ul>
 					</nav>

@@ -25,7 +25,7 @@
 				{{ $count := sub (len .Params.Speaker) 1 }}
 				ارائه دهندگان
 				{{ range $index, $element :=  .Params.Speaker }}
-					<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+					<a href="{{ "/speaker/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
 					{{ if ne $index  $count }}
 						و
 					{{ end }}
@@ -43,7 +43,7 @@
 				{{ $count := sub (len .Params.Topic) 1 }}
 				موضوعات
 				{{ range $index, $element :=  .Params.Topic }}
-					<a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+					<a href="{{ "/topic/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
 					{{ if ne $index  $count }}
 						و
 					{{ end }}
