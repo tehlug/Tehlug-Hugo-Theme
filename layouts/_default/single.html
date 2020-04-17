@@ -12,6 +12,12 @@
 		<div class="markdown">
 			{{ .Content }}
 		</div>
+		
+		{{ if .File.Dir }}
+			{{ if (fileExists (print "./static/events/images/" .Params.eventNumber)) }}
+				<a href="/events/{{ .Params.eventNumber }}/gallery/">تصاویر</a><br><br>
+			{{ end }}
+		{{ end }}
 
 		{{ if (isset .Params "registerlink") }}
 			<a href="{{ .Params.RegisterLink }}" target="_blank">ثبت‌نام رایگان</a>
