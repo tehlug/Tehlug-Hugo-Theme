@@ -44,7 +44,7 @@
 		<div class="post-tags">
 			<nav class="nav tags">
 				<ul class="flat">
-					<li><a href="/location/{{.Params.Location}}">{{ .Params.Location }}</a></li>
+					<li><a href="/location/{{.Params.Location | urlize}}">{{ .Params.Location }}</a></li>
 				</ul>
 			</nav>		
 		</div>
