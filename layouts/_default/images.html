@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+{{ partial "header.html" . }}
+
+<body>
+
+	<div class="container wrapper list">
+		{{ partial "head.html" . }}
+
+		{{ if isset .Data "Term" }}
+			<h1>{{ .Data.Term }}</h1>
+		{{ else }}
+			<h1 class="page-title">همه تصاویر</h1>
+		{{ end }}
+
+		<ul class="posts">
+			{{ if .File.Dir }}
+				{{ range (readDir (print "./static/events/images")) }}
+					<li class="post">
+						<a href="/events/{{.Name}}/gallery">جلسه {{.Name}}</a>
+					</li>
+				{{ end }}
+			{{ end }}
+		</ul>
+	</div>
+
+	{{ partial "footer.html" . }}
+</body>
+
+</html>

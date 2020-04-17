@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+{{ partial "header.html" . }}
+
+<body>
+
+	<div class="container wrapper list">
+		{{ partial "head.html" . }}
+
+		{{ if isset .Data "Term" }}
+			<h1>{{ .Data.Term }}</h1>
+		{{ else }}
+			<h1 class="page-title">تصاویر جلسه {{ .Params.eventNumber }}</h1>
+		{{ end }}
+		
+		<div class="gallery">
+			{{ if .File.Dir }}
+				{{ $basename := (print "/events/images/" .Params.eventNumber "/") }}
+				{{ range (readDir (print "./static" $basename )) }}
+					<div class="gallery-column">
+					
+						<img src="{{ $basename | relURL }}{{ .Name }}"/>
+						{{ index (split .Name ".") 0 }}
+					
+					</div>
+			
+				{{ end }}
+				
+			{{ end }}
+		
+		</div>
+	
+	</div>
+
+	{{ partial "footer.html" . }}
+</body>
+
+</html>
