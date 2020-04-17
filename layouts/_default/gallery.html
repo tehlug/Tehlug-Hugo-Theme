@@ -19,10 +19,10 @@
 				{{ if (fileExists (print "./static" $basename)) }}
 					{{ range (readDir (print "./static" $basename )) }}
 						<div class="gallery-column">
-						
-							<img src="{{ $basename | relURL }}{{ .Name }}"/>
-							{{ index (split .Name ".") 0 }}
-						
+							<a href="{{ $basename | relURL }}{{ .Name }}" target="_blank">
+								<img src="{{ $basename | relURL }}{{ .Name }}"/>
+								{{ index (split .Name ".") 0 }}
+							</a>
 						</div>
 				
 					{{ end }}
