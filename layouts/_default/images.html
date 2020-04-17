@@ -15,10 +15,12 @@
 
 		<ul class="posts">
 			{{ if .File.Dir }}
-				{{ range (readDir (print "./static/events/images")) }}
-					<li class="post">
-						<a href="/events/{{.Name}}/gallery">جلسه {{.Name}}</a>
-					</li>
+				{{ if (fileExists (print "./static/events/images/")) }}
+					{{ range (readDir (print "./static/events/images")) }}
+						<li class="post">
+							<a href="/events/{{.Name}}/gallery">جلسه {{.Name}}</a>
+						</li>
+					{{ end }}
 				{{ end }}
 			{{ end }}
 		</ul>

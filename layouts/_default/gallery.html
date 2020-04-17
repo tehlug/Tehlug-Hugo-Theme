@@ -16,16 +16,19 @@
 		<div class="gallery">
 			{{ if .File.Dir }}
 				{{ $basename := (print "/events/images/" .Params.eventNumber "/") }}
-				{{ range (readDir (print "./static" $basename )) }}
-					<div class="gallery-column">
-					
-						<img src="{{ $basename | relURL }}{{ .Name }}"/>
-						{{ index (split .Name ".") 0 }}
-					
-					</div>
-			
-				{{ end }}
+				{{ if (fileExists (print "./static" $basename)) }}
+					{{ range (readDir (print "./static" $basename )) }}
+						<div class="gallery-column">
+						
+							<img src="{{ $basename | relURL }}{{ .Name }}"/>
+							{{ index (split .Name ".") 0 }}
+						
+						</div>
 				
+					{{ end }}
+					
+				{{ end }}
+			
 			{{ end }}
 		
 		</div>
