@@ -1,0 +1,52 @@
+<div class="post">
+	<a class="title" href="{{ .RelPermalink }}">{{.Title}}</a>
+	<br>
+	<span class="description">	
+		{{ if isset .Params "eventdate" }}
+			تاریخ: {{ .Params.EventDate }}
+		{{ end }}
+		
+		<br>
+
+		{{ if isset .Params "location"  }}
+			مکان: {{ .Params.Location }}
+		{{ end }}
+
+		<br>
+		
+		{{ if ne .Type "page" }}
+			{{ if gt .Params.Speaker 0 }}
+				{{ $count := sub (len .Params.Speaker) 1 }}
+				ارائه دهندگان
+				{{ range $index, $element :=  .Params.Speaker }}
+					<a href="{{ "/speaker/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+					{{ if ne $index  $count }}
+						و
+					{{ end }}
+
+				{{ end }}
+
+			{{ end }}
+
+		{{ end }}
+
+		<br>
+	
+		{{ if ne .Type "page" }}
+			{{ if gt .Params.Topic 0 }}
+				{{ $count := sub (len .Params.Topic) 1 }}
+				موضوعات
+				{{ range $index, $element :=  .Params.Topic }}
+					<a href="{{ "/topic/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+					{{ if ne $index  $count }}
+						و
+					{{ end }}
+				
+				{{ end }}
+			
+			{{ end }}
+	
+		{{ end }}
+		
+	</span>
+</div>

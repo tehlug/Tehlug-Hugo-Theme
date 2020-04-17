@@ -14,12 +14,11 @@
 
 		<ul class="posts">
 			{{- range .Data.Pages -}}
-			{{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
-			{{- else -}}
-			<li class="post">
-				<a href="{{ .RelPermalink }}">{{.Title}}</a> <span class="meta">{{ .Params.EventDate }}</span>
-			</li>
-			{{- end -}}
+				{{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
+				{{- else -}}
+					{{ partial "itemlist.html" . }}
+					<br>
+				{{- end -}}
 			{{- end -}}
 		</ul>
 	</div>
