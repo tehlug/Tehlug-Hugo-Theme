@@ -24,7 +24,9 @@
 		{{ end }}
 
 		{{ if (and (isset .Params "eventdate") (isset .Params "starttime") (isset .Params "endtime")) }}
-			<p>زمان برگزاری: {{ .Params.EventDate }}  از ساعت: {{ .Params.StartTime }} تا {{ .Params.EndTime }}</p>
+			<p>زمان برگزاری: <bdi>{{ partial "persianNumber.html" .Params.EventDate }}</bdi>
+				از ساعت: {{ partial "persianNumber.html" .Params.StartTime }}
+				تا {{ partial "persianNumber.html" .Params.EndTime }}</p>
 		{{ end }}
 
 		{{ if (isset .Params "address") }}

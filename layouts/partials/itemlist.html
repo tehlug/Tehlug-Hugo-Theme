@@ -3,7 +3,7 @@
 	<br>
 	<span class="description">	
 		{{ if isset .Params "eventdate" }}
-			تاریخ: {{ .Params.EventDate }}
+			تاریخ: <bdi>{{ partial "persianNumber.html" .Params.EventDate }}</bdi>
 		{{ end }}
 		
 		<br>

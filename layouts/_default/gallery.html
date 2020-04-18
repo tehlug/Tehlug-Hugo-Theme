@@ -10,7 +10,7 @@
 		{{ if isset .Data "Term" }}
 			<h1>{{ .Data.Term }}</h1>
 		{{ else }}
-			<h1 class="page-title">تصاویر جلسه {{ .Params.eventNumber }}</h1>
+			<h1 class="page-title">تصاویر جلسه {{ partial "persianNumber.html" .Params.eventNumber }}</h1>
 		{{ end }}
 		
 		<div class="gallery">

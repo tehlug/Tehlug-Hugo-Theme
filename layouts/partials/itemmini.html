@@ -2,14 +2,15 @@
 	<a class="title" href="{{ .RelPermalink }}">{{.Title}}</a>
 	<br>
 	<span class="description">
-		جلسه {{ .Params.EventNumber }}
+		جلسه {{ partial "persianNumber.html" .Params.EventNumber }}
 	
 		{{ if isset .Params "eventdate" }}
-			در تاریخ: {{ .Params.EventDate }}
+			در تاریخ <bdi>{{ partial "persianNumber.html" .Params.EventDate }}</bdi>
 		{{ end }}
 
 		{{ if (and (isset .Params "starttime") (isset .Params "endtime")) }}
-			از ساعت: {{ .Params.StartTime }} تا {{ .Params.EndTime }}
+			از ساعت {{ partial "persianNumber.html" .Params.StartTime }}
+			تا {{ partial "persianNumber.html" .Params.EndTime }}
 		{{ end }}
 
 		{{ if isset .Params "location"  }}

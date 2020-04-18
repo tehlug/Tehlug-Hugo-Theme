@@ -18,7 +18,7 @@
 				{{ if (fileExists (print "./static/events/images/")) }}
 					{{ range (readDir (print "./static/events/images")) }}
 						<li class="post">
-							<a href="/events/{{.Name}}/gallery">جلسه {{.Name}}</a>
+							<a href="/events/{{.Name}}/gallery">جلسه {{partial "persianNumber.html" .Name}}</a>
 						</li>
 					{{ end }}
 				{{ end }}
