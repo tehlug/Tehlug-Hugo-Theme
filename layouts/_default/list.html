@@ -7,7 +7,7 @@
 		{{ partial "head.html" . }}
 
 		{{ if isset .Data "Term" }}
-			<h1>{{ .Data.Term }}</h1>
+			<h1 class="page-title">{{ .Data.Term }}</h1>
 		{{ else }}
 			<h1 class="page-title">همه جلسات</h1>
 		{{ end }}
@@ -17,7 +17,6 @@
 				{{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
 				{{- else -}}
 					{{ partial "itemlist.html" . }}
-					<br>
 				{{- end -}}
 			{{- end -}}
 		</ul>

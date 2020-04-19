@@ -9,7 +9,7 @@
 		<br>
 
 		{{ if isset .Params "location"  }}
-			مکان: {{ .Params.Location }}
+			محل: <a href="/location/{{.Params.Location | urlize}}">{{ .Params.Location }}</a>
 		{{ end }}
 
 		<br>
@@ -17,7 +17,11 @@
 		{{ if ne .Type "page" }}
 			{{ if gt .Params.Speaker 0 }}
 				{{ $count := sub (len .Params.Speaker) 1 }}
-				ارائه دهندگان
+				{{ if eq $count 1}}
+					ارائه دهندگان:
+				{{ else }}
+					ارائه دهنده:
+				{{ end }}
 				{{ range $index, $element :=  .Params.Speaker }}
 					<a href="{{ "/speaker/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
 					{{ if ne $index  $count }}
@@ -35,7 +39,11 @@
 		{{ if ne .Type "page" }}
 			{{ if gt .Params.Topic 0 }}
 				{{ $count := sub (len .Params.Topic) 1 }}
-				موضوعات
+				{{ if eq $count 1}}
+					موضوعات:
+				{{ else }}
+					موضوع:
+				{{ end }}
 				{{ range $index, $element :=  .Params.Topic }}
 					<a href="{{ "/topic/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
 					{{ if ne $index  $count }}
