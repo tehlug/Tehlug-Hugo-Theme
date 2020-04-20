@@ -6,13 +6,13 @@
 	<div class="container wrapper tags">
 		{{ partial "head.html" . }}
 
-		<h3 class="page-title">
+		<h2 class="page-title">
 			{{ if eq .Name "Speaker" }}
 				ارائه دهندگان
 			{{else if eq .Name "Topic"}}
 				موضوعات
 			{{ end }}
-		</h3>
+		</h2>
 
 		{{ $biggest := 1 }}
 		{{ $smallest := 1 }}
