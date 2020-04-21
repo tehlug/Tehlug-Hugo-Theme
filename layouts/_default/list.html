@@ -6,11 +6,6 @@
 	<div class="container wrapper list">
 		{{ partial "head.html" . }}
 
-		{{ if isset .Data "Term" }}
-			<h2 class="page-title">{{ .Data.Term }}</h2>
-		{{ else }}
-			<h2 class="page-title">جلسات</h2>
-		{{ end }}
 
 		<ul class="posts">
 			{{- range .Data.Pages -}}
