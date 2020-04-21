@@ -313,7 +313,7 @@ nav a:hover {
 
 .post {
     border-bottom: 1px solid #e1e4e8!important;
-    padding: 0px 0px;
+    padding-bottom: 32px;
 }
 
 .post-summary {
