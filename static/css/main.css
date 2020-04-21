@@ -362,14 +362,14 @@ nav a:hover {
 
 .post-tags .tags a {
     display: inline-block;
-    border: 1px solid #0366d6;
-    border-radius: 4px;
-    padding: 0px 6px;
     color: #0366d6;
     line-height: 20px;
-    font-size: 12px;
+    font-size: 13px;
     text-decoration: none;
-    margin: 0 1px;
+
+    background-color: #f1f8ff;
+    border-radius: 3px;
+    padding: 3px 6px;
 }
 
 .list .posts .post .meta {
