@@ -236,8 +236,26 @@ ul {
 }
 
 .header nav {
-    margin-top: 20px;
-    border-top: 1px solid #f4f4f4;
+    padding: 16px 0px;
+    border-bottom: 1px solid #d1d5da;
+}
+
+.nav a {
+    color: #586069;
+    font-size: 1rem;
+    padding: 16px 8px;
+}
+
+nav a:hover {
+    text-decoration: none
+}
+
+.selected a {
+    color: #24292e;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 16px 8px;
+    border-bottom: 2px solid #e36209;
 }
 
 .header nav ul,
