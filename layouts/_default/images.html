@@ -6,12 +6,11 @@
 	<div class="container wrapper list">
 		{{ partial "head.html" . }}
 
-
 		<ul class="posts">
 			{{ if .File.Dir }}
 				{{ if (fileExists (print "./static/events/images/")) }}
 					{{ range (readDir (print "./static/events/images")) }}
-						<li class="post">
+						<li class="post-summary">
 							<a href="/events/{{.Name}}/gallery">جلسه {{partial "persianNumber.html" .Name}}</a>
 						</li>
 					{{ end }}
