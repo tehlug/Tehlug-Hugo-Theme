@@ -405,7 +405,8 @@ nav a:hover {
 }
 
 .tag-cloud a {
-    margin-right: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .pagination {
