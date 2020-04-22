@@ -41,23 +41,24 @@
 				src="https://www.openstreetmap.org/export/embed.html?bbox={{ sub .Params.Lng .Site.Params.MapView }},{{sub .Params.Lat .Site.Params.MapView }},{{add .Params.Lng .Site.Params.MapView }},{{add .Params.Lat .Site.Params.MapView }}&layer=mapnik&marker={{ .Params.Lat }},{{ .Params.Lng }}">
 			</iframe>
 		{{ end }}
-		
 
-		<div class="post-tags">
-			<nav class="nav tags">
-				<ul class="flat">
-					<li><a href="/location/{{.Params.Location | urlize}}">{{ .Params.Location }}</a></li>
-				</ul>
-			</nav>		
-		</div>
+		{{ if gt .Params.Locations 0 }}
+			<div class="post-tags">
+				<nav class="nav tags">
+					<ul class="flat">
+						<li><a href="/locations/{{ index .Params.Locations 0 | urlize}}">{{ index .Params.Locations 0 }}</a></li>
+					</ul>
+				</nav>		
+			</div>
+		{{ end }}
 
 		<div class="post-tags">
 			{{ if ne .Type "page" }}
-				{{ if gt .Params.Speaker 0 }}
+				{{ if gt .Params.Speakers 0 }}
 					<nav class="nav tags">
 							<ul class="flat">
-								{{ range .Params.Speaker }}
-								<li><a href="{{ "/speaker/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+								{{ range .Params.Speakers }}
+								<li><a href="{{ "/speakers/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
 								{{ end }}
 							</ul>
 					</nav>
@@ -68,11 +69,11 @@
 
 		<div class="post-tags">
 			{{ if ne .Type "page" }}
-				{{ if gt .Params.Topic 0 }}
+				{{ if gt .Params.Topics 0 }}
 					<nav class="nav tags">
 							<ul class="flat">
-								{{ range .Params.Topic }}
-								<li><a href="{{ "/topic/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
+								{{ range .Params.Topics }}
+								<li><a href="{{ "/topics/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
 								{{ end }}
 							</ul>
 					</nav>

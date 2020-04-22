@@ -13,8 +13,8 @@
 			تا {{ partial "persianNumber.html" .Params.EndTime }}
 		{{ end }}
 
-		{{ if isset .Params "location"  }}
-			در {{ .Params.Location }}
+		{{ if gt .Params.Locations 0 }}
+			در {{ index .Params.Locations 0 }}
 		{{ end }}
 
 		برگزار میشود.
@@ -22,15 +22,15 @@
 		<br>
 
 		{{ if ne .Type "page" }}
-			{{ if gt .Params.Speaker 0 }}
-				{{ $count := sub (len .Params.Speaker) 1 }}
+			{{ if gt .Params.Speakers 0 }}
+				{{ $count := sub (len .Params.Speakers) 1 }}
 				{{ if eq $count 1}}
 					ارائه دهندگان:
 				{{ else }}
 					ارائه دهنده:
 				{{ end }}
-				{{ range $index, $element :=  .Params.Speaker }}
-					<a href="{{ "/speaker/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+				{{ range $index, $element :=  .Params.Speakers }}
+					<a href="{{ "/speakers/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
 					{{ if ne $index  $count }}
 						و
 					{{ end }}
@@ -44,15 +44,15 @@
 		<br>
 	
 		{{ if ne .Type "page" }}
-			{{ if gt .Params.Topic 0 }}
-				{{ $count := sub (len .Params.Topic) 1 }}
+			{{ if gt .Params.Topics 0 }}
+				{{ $count := sub (len .Params.Topics) 1 }}
 				{{ if eq $count 1}}
 					موضوعات:
 				{{ else }}
 					موضوع:
 				{{ end }}
-				{{ range $index, $element :=  .Params.Topic }}
-					<a href="{{ "/topic/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+				{{ range $index, $element :=  .Params.Topics }}
+					<a href="{{ "/topics/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
 					{{ if ne $index  $count }}
 						و
 					{{ end }}
