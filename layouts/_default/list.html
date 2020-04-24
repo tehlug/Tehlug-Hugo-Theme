@@ -11,7 +11,12 @@
 			{{- range .Data.Pages -}}
 				{{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
 				{{- else -}}
-					{{ partial "itemlist.html" . }}
+					{{ if eq .Type "news" }}
+						{{ partial "itempost.html" . }}
+					{{ else }}
+						{{ partial "itemlist.html" . }}
+					{{ end }}
+
 				{{- end -}}
 			{{- end -}}
 		</ul>
