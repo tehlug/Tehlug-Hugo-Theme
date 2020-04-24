@@ -14,12 +14,29 @@
 				{{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) }}
 				{{ range $index, $element :=  $paginator.Pages }}
 
-					{{ if eq $index 0 }}
-						{{ partial "itemfull.html" . }}
-					{{ else }} 
-						{{ partial "itemmini.html" . }}
+					{{ if eq .Type "news" }}
+						<div class="post-summary">
+							<a class="title" href="{{ .RelPermalink }}">{{.Title}}</a>
+							<br>
+							<span class="description">
+								{{ if isset .Params "description" }}
+								{{ .Description }}
+								{{ else }}
+								{{ .Summary }}&hellip;
+								{{ end }}
+							</span>
+						</div>
+					
+					{{ else }}
+
+						{{ if eq $index 0 }}
+							{{ partial "itemfull.html" . }}
+						{{ else }} 
+							{{ partial "itemmini.html" . }}
+						{{ end }}
+						
 					{{ end }}
-					  
+
 				{{ end }}
 			</div>
 		</div>
