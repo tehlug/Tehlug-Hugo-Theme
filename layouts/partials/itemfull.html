@@ -24,7 +24,7 @@
 		{{ if ne .Type "page" }}
 			{{ if gt .Params.Speakers 0 }}
 				{{ $count := sub (len .Params.Speakers) 1 }}
-				{{ if eq $count 1}}
+				{{ if gt $count 0 }}
 					ارائه دهندگان:
 				{{ else }}
 					ارائه دهنده:
@@ -46,7 +46,7 @@
 		{{ if ne .Type "page" }}
 			{{ if gt .Params.Topics 0 }}
 				{{ $count := sub (len .Params.Topics) 1 }}
-				{{ if eq $count 1}}
+				{{ if gt $count 0 }}
 					موضوعات:
 				{{ else }}
 					موضوع:
