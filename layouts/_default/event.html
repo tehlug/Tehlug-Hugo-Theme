@@ -12,7 +12,23 @@
 		<div class="markdown">
 			{{ .Content }}
 		</div>
-		
+
+		<div>
+			{{ if ne .Type "page" }}
+				{{ if gt .Params.Participants 0 }}
+					{{ $count := len .Params.Participants }}
+					شرکت کنندگان {{ partial "persianNumber.html" $count }} نفر:<br>
+
+					{{ range $index, $element :=  .Params.Participants }}
+						<a href="{{ "/participants/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
+						{{ if ne $index (sub $count 1) }}
+							،
+						{{ end }}
+					{{ end }}
+				{{ end }}
+			{{ end }}
+		</div>
+
 		{{ if .File.Dir }}
 			{{ if (fileExists (print "./static/events/images/" .Params.eventNumber)) }}
 				<a href="/events/{{ .Params.eventNumber }}/gallery/">تصاویر</a><br><br>
@@ -65,7 +81,6 @@
 				{{ end }}
 			{{ end }}
 		</div>
-
 
 		<div class="post-tags">
 			{{ if ne .Type "page" }}
