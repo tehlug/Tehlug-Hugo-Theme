@@ -18,43 +18,42 @@
 		{{ end }}
 
 		برگزار میشود.
-
 		<br>
 
 		{{ if ne .Type "page" }}
 			{{ if gt .Params.Speakers 0 }}
-				{{ $count := sub (len .Params.Speakers) 1 }}
-				{{ if gt $count 0 }}
+				{{ $count := len .Params.Speakers }}
+				{{ if gt $count 1 }}
 					ارائه دهندگان:
 				{{ else }}
 					ارائه دهنده:
 				{{ end }}
-				{{ range $index, $element :=  .Params.Speakers }}
+				{{ range $index, $element := .Params.Speakers }}
 					<a href="{{ "/speakers/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-					{{ if ne $index  $count }}
-						و
+					{{ if ne $index (sub $count 1) }}
+						،
 					{{ end }}
 
 				{{ end }}
 
 			{{ end }}
 
-		{{ end }}
+			<br>
 
-		<br>
+		{{ end }}
 	
 		{{ if ne .Type "page" }}
 			{{ if gt .Params.Topics 0 }}
-				{{ $count := sub (len .Params.Topics) 1 }}
-				{{ if gt $count 0 }}
+				{{ $count := len .Params.Topics }}
+				{{ if gt $count 1 }}
 					موضوعات:
 				{{ else }}
 					موضوع:
 				{{ end }}
-				{{ range $index, $element :=  .Params.Topics }}
+				{{ range $index, $element := .Params.Topics }}
 					<a href="{{ "/topics/" | relLangURL }}{{ . | urlize }}">{{ . }}</a>
-					{{ if ne $index  $count }}
-						و
+					{{ if ne $index (sub $count 1) }}
+						،
 					{{ end }}
 				
 				{{ end }}
@@ -67,15 +66,13 @@
 
 		{{ if (isset .Params "registerlink") }}
 			<a href="{{ .Params.RegisterLink }}" target="_blank">ثبت‌نام رایگان</a> </br>
+			<br>
 		{{ end }}
-		
-		<br>
 		
 		{{ if (isset .Params "address") }}
 			آدرس: {{ .Params.Address }}
+			<br>
 		{{ end }}
-
-		<br>
 
 		{{ if (and (isset .Params "lat") (isset .Params "lng")) }}
 			<a href="geo:{{ .Params.Lat }},{{ .Params.Lng }}" target="_blank">باز کردن نقشه</a>
