@@ -31,25 +31,37 @@
 
 		{{ if .File.Dir }}
 			{{ if (fileExists (print "./static/events/images/" .Params.eventNumber)) }}
-				<a href="/events/{{ .Params.eventNumber }}/gallery/">تصاویر</a><br><br>
+				<a href="/events/{{ .Params.eventNumber }}/gallery/">تصاویر</a>
+				<br>
 			{{ end }}
 		{{ end }}
 
 		{{ if (isset .Params "registerlink") }}
+			<br>
 			<a href="{{ .Params.RegisterLink }}" target="_blank">ثبت‌نام رایگان</a>
+			<br>
 		{{ end }}
 
-		{{ if (and (isset .Params "eventdate") (isset .Params "starttime") (isset .Params "endtime")) }}
-			<p>زمان برگزاری: <bdi>{{ partial "persianNumber.html" .Params.EventDate }}</bdi>
-				از ساعت: {{ partial "persianNumber.html" .Params.StartTime }}
-				تا {{ partial "persianNumber.html" .Params.EndTime }}</p>
+		{{ if (and (isset .Params "eventdate")) }}
+			<br>
+			زمان برگزاری: <bdi>{{ partial "persianNumber.html" .Params.EventDate }}</bdi>
 		{{ end }}
+	
+		{{ if (and (isset .Params "starttime") (isset .Params "endtime")) }}
+			از ساعت: {{ partial "persianNumber.html" .Params.StartTime }}
+			تا {{ partial "persianNumber.html" .Params.EndTime }}
+		{{ end }}
+
+		<br>
 
 		{{ if (isset .Params "address") }}
-			<p>آدرس: {{ .Params.Address }} </p>
+			<br>
+			آدرس: {{ .Params.Address }}
+			<br>
 		{{ end }}
 
 		{{ if (and (isset .Params "lat") (isset .Params "lng")) }}
+			<br>
 			<a href="geo:{{ .Params.Lat }},{{ .Params.Lng }}" target="_blank">باز کردن نقشه</a>
 			<br>
 
@@ -72,11 +84,11 @@
 			{{ if ne .Type "page" }}
 				{{ if gt .Params.Speakers 0 }}
 					<nav class="nav tags">
-							<ul class="flat">
-								{{ range .Params.Speakers }}
+						<ul class="flat">
+							{{ range .Params.Speakers }}
 								<li><a href="{{ "/speakers/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-								{{ end }}
-							</ul>
+							{{ end }}
+						</ul>
 					</nav>
 				{{ end }}
 			{{ end }}
@@ -86,11 +98,11 @@
 			{{ if ne .Type "page" }}
 				{{ if gt .Params.Topics 0 }}
 					<nav class="nav tags">
-							<ul class="flat">
-								{{ range .Params.Topics }}
+						<ul class="flat">
+							{{ range .Params.Topics }}
 								<li><a href="{{ "/topics/" | relLangURL }}{{ . | urlize }}">{{ . }}</a></li>
-								{{ end }}
-							</ul>
+							{{ end }}
+						</ul>
 					</nav>
 				{{ end }}
 			{{ end }}
