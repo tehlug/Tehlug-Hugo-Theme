@@ -25,12 +25,14 @@
 							،
 						{{ end }}
 					{{ end }}
+					<br>
 				{{ end }}
 			{{ end }}
 		</div>
 
 		{{ if .File.Dir }}
 			{{ if (fileExists (print "./static/events/images/" .Params.eventNumber)) }}
+				<br>
 				<a href="/events/{{ .Params.eventNumber }}/gallery/">تصاویر</a>
 				<br>
 			{{ end }}
