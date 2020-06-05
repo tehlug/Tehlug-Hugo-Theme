@@ -6,18 +6,23 @@
 	<div class="container wrapper tags">
 		{{ partial "head.html" . }}
 
-		{{ $biggest := 5 }}
+		{{ $biggest := 4 }}
 		{{ $smallest := 1 }}
-		{{ $max := 2 }}
-		{{ $min := 1 }}
-		{{ $size := $min }}
+		{{ $max := -1 }}
+		{{ $counter := -2 }}
 
 		{{ $data := .Data }}
 		<div class="tag-cloud">
 		{{ range $key, $value := .Data.Terms.ByCount }}
-			{{ $size := (add (mul (div $value.Count $biggest) (sub $max $min)) $min) }}
-			{{ $size := (cond (eq $biggest $smallest) $min $size) }}
-			<a style="font-size: {{ $size }}rem;" href="{{ $.Site.LanguagePrefix | absURL }}{{ $data.Plural }}/{{ $value.Name | urlize }}/">{{ $value.Name }}</a>
+			{{ if lt $counter 0 }}
+				{{ $counter = add $counter 1 }}
+				{{ $max = (div $value.Count $biggest) }}
+			{{ end }}
+			
+			{{ (add  (div $value.Count $max) $smallest) }}
+			{{ $size := (add  (div $value.Count $max) $smallest) }}
+			<a style="font-size: {{ $size }}rem;" 
+				href="{{ $.Site.LanguagePrefix | absURL }}{{ $data.Plural }}/{{ $value.Name | urlize }}/">{{ $value.Name }} {{ partial "persianNumber.html" $value.Count }}</a>
 		{{ end }}
 		</div>
 	</div>
