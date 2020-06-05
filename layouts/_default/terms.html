@@ -6,8 +6,8 @@
 	<div class="container wrapper tags">
 		{{ partial "head.html" . }}
 
-		{{ $biggest := 4 }}
-		{{ $smallest := 1 }}
+		{{ $biggest := 40.1 }}
+		{{ $smallest := 20 }}
 		{{ $max := -1 }}
 		{{ $counter := -2 }}
 
@@ -19,10 +19,10 @@
 				{{ $max = (div $value.Count $biggest) }}
 			{{ end }}
 			
-			{{ (add  (div $value.Count $max) $smallest) }}
 			{{ $size := (add  (div $value.Count $max) $smallest) }}
-			<a style="font-size: {{ $size }}rem;" 
-				href="{{ $.Site.LanguagePrefix | absURL }}{{ $data.Plural }}/{{ $value.Name | urlize }}/">{{ $value.Name }} {{ partial "persianNumber.html" $value.Count }}</a>
+
+			<a style="font-size: {{ $size }}px;" 
+				href="{{ $.Site.LanguagePrefix | absURL }}{{ $data.Plural }}/{{ $value.Name | urlize }}/">{{ $value.Name }}:{{ partial "persianNumber.html" $value.Count }}</a>
 		{{ end }}
 		</div>
 	</div>
