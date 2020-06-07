@@ -6,6 +6,9 @@
 
 	<div class="container wrapper list">
 		{{ partial "head.html" . }}
+		<h1 class="title">{{ .Title }}</h1>
+
+		<a href="/events/{{ .Params.eventNumber }}/info/">توضیحات رویداد</a>
 		
 		<div class="gallery">
 			{{ if .File.Dir }}
