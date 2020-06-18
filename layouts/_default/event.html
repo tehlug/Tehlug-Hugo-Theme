@@ -62,6 +62,25 @@
 			<br>
 		{{ end }}
 
+		<div class="poster">
+			{{ if .File.Dir }}
+				{{ $basename := (print "/events/poster/" .Params.eventNumber "/") }}
+				{{ if (fileExists (print "./static" $basename)) }}
+					{{ range (readDir (print "./static" $basename )) }}
+						<a href="{{ $basename | relURL }}{{ .Name }}" target="_blank">
+							<img src="{{ $basename | relURL }}{{ .Name }}"/>
+							{{ index (split .Name ".") 0 }}
+						</a>
+				
+					{{ end }}
+					
+				{{ end }}
+			
+			{{ end }}
+		
+		</div>
+
+
 		{{ if (and (isset .Params "lat") (isset .Params "lng")) }}
 			<br>
 			<a href="geo:{{ .Params.Lat }},{{ .Params.Lng }}" target="_blank">باز کردن نقشه</a>
