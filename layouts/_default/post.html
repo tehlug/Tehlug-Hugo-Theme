@@ -9,6 +9,10 @@
 			<h1 class="title">{{ .Title }}</h1>
 		</div>
 
+		{{ if (isset .Params "persiandate") }}
+			<bdi>{{ partial "persianNumber.html" .Params.persianDate }}</bdi>
+		{{ end }}
+	
 		<div class="markdown">
 			{{ .Content }}
 		</div>

@@ -1,5 +1,9 @@
 <div class="post-summary">
 	<a class="title" href="{{ .RelPermalink }}">{{.Title}}</a>
+	{{ if (isset .Params "persiandate") }}
+		<br>
+		<bdi>{{ partial "persianNumber.html" .Params.persianDate }}</bdi>
+	{{ end }}
 	<br>
 	<span class="description">
 		{{ if isset .Params "description" }}

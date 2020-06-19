@@ -44,7 +44,7 @@
 			<br>
 		{{ end }}
 
-		{{ if (and (isset .Params "eventdate")) }}
+		{{ if (isset .Params "eventdate") }}
 			<br>
 			زمان برگزاری: <bdi>{{ partial "persianNumber.html" .Params.EventDate }}</bdi>
 		{{ end }}
