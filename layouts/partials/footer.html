@@ -2,7 +2,11 @@
 	<ul>
 		{{ range .Site.Params.Footer.Items }}
 		<li>
-			<a href="{{ .url }}" target="_blank"> {{ .title }} </a>
+			{{- if eq .rel "me"}}
+			<a rel="me" href="{{ .url }}"> {{ .title }} </a>
+			{{- else }}
+			<a href="{{ .url }}"> {{ .title }} </a>
+			{{- end}}
 		</li>
 		{{ end }}
 	</ul>
