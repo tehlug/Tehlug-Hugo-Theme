@@ -1,6 +1,6 @@
 body {
 	color: #ddd;
-	background-color: #000;
+	background-color: #1e1e1e;
 }
 
 ::-moz-selection {
@@ -26,7 +26,7 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 a,a:hover {
-	color: #ff7979;
+	color: #98d6f6;
 	text-decoration: none;
 }
 
@@ -41,13 +41,23 @@ a:hover {
 }
 
 .post-tags .tags a {
-    border: 1px solid #ddd;
-	color: #ddd;
+    border: 1px solid #49494d;
+	color: #98d6f6;
+    background-color: #49494d;
 }
 
 .site-title a {
 	color: #ddd;
 	text-decoration: none !important;
+}
+
+.nav a {
+    color: #97a1b2;
+}
+
+.selected a {
+    color: #fff;
+    border-bottom: 2px solid #98d6f6;
 }
 
 .header nav,
