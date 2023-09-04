@@ -6,9 +6,22 @@
 	<div class="container wrapper tags">
 		{{ partial "head.html" . }}
 
-		<h1 class="page-title">All tags</h1>
-	</div>
+		<h2 class="page-title">{{ .Name }}</h2>
+		
+		<ul class="posts">
+			{{- range .Data.Pages -}}
+				{{- if (in (.Site.Params.excludedTypes | default (slice "page")) .Type) -}}
+				{{- else -}}
+					{{ if eq .Type "news" }}
+						{{ partial "itempost.html" . }}
+					{{ else }}
+						{{ partial "itemlist.html" . }}
+					{{ end }}
 
+				{{- end -}}
+			{{- end -}}
+		</ul>
+	</div> 
 	{{ partial "footer.html" . }}
 </body>
 
