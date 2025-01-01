@@ -13,13 +13,19 @@
 		<div class="gallery">
 			{{ if .File.Dir }}
 				{{ $basename := (print "/events/images/" .Params.eventNumber "/") }}
-				{{ if (fileExists (print "./static" $basename)) }}
-					{{ range (readDir (print "./static" $basename )) }}
+				{{ if (fileExists (print "./assets" $basename)) }}
+					{{ range (readDir (print "./assets" $basename )) }}
+						{{$imageName := index (split .Name ".") 0}}
 						<div class="gallery-column">
-							<a href="{{ $basename | relURL }}{{ .Name }}" target="_blank">
-								<img src="{{ $basename | relURL }}{{ .Name }}"/>
-								{{ index (split .Name ".") 0 }}
+							{{ with resources.Get (print ($basename | relURL) .Name) }}
+								<a href="{{ .RelPermalink }}" target="_blank">
+								{{ with .Resize "300x" }}
+									<img src="{{ .RelPermalink }}" height="150" />
+								{{ end }}
+
+								{{ $imageName }}
 							</a>
+							{{ end }}
 						</div>
 				
 					{{ end }}

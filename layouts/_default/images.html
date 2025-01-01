@@ -8,8 +8,8 @@
 
 		<ul class="posts">
 			{{ if .File.Dir }}
-				{{ if (fileExists (print "./static/events/images/")) }}
-					{{ range (readDir (print "./static/events/images")) }}
+				{{ if (fileExists (print "./assets/events/images/")) }}
+					{{ range (readDir (print "./assets/events/images")) }}
 						<li class="post-summary">
 							<a href="/events/{{.Name}}/gallery">جلسه {{partial "persianNumber.html" .Name}}</a>
 						</li>

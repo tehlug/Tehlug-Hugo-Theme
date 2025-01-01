@@ -31,7 +31,7 @@
 		</div>
 
 		{{ if .File.Dir }}
-			{{ if (fileExists (print "./static/events/images/" .Params.eventNumber)) }}
+			{{ if (fileExists (print "./assets/events/images/" .Params.eventNumber)) }}
 				<br>
 				<a href="/events/{{ .Params.eventNumber }}/gallery/">تصاویر</a>
 				<br>
@@ -65,12 +65,18 @@
 		<div class="poster">
 			{{ if .File.Dir }}
 				{{ $basename := (print "/events/poster/" .Params.eventNumber "/") }}
-				{{ if (fileExists (print "./static" $basename)) }}
-					{{ range (readDir (print "./static" $basename )) }}
-						<a href="{{ $basename | relURL }}{{ .Name }}" target="_blank">
-							<img src="{{ $basename | relURL }}{{ .Name }}"/>
-							{{ index (split .Name ".") 0 }}
-						</a>
+				{{ if (fileExists (print "./assets" $basename)) }}
+					{{ range (readDir (print "./assets" $basename )) }}
+						{{$imageName := index (split .Name ".") 0}}
+						{{ with resources.Get (print ($basename | relURL) .Name) }}
+							<a href="{{ .RelPermalink }}" target="_blank">
+								{{ with .Resize "300x" }}
+									<img src="{{ .RelPermalink }}" height="150" />
+								{{ end }}
+
+								{{ $imageName }}
+							</a>
+						{{ end }}
 				
 					{{ end }}
 					

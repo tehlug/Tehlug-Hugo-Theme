@@ -483,34 +483,45 @@ table th, table td {
 }
 
 .poster {
-    margin: 0 auto;
-    width: 200px;
+  margin: 0 auto;
+  width: 300px;
+}
+
+.gallery,
+.gallery * {
+  box-sizing: border-box;
 }
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0 4px;
-    text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center;
+  margin-top: -8px;
+  margin-inline: -4px;
+  width: 100%;
 }
 
 .gallery-column {
-    flex: 25%;
+  flex: 0 0 auto;
+  width: 25%;
+  margin-top: 8px;
+  padding-inline: 4px;
 }
 
 .gallery-column img {
-    margin-top: 8px;
-    width: 100%;
+  margin-block: 8px;
+  width: 100%;
+  object-fit: cover;
 }
 
 @media screen and (max-width: 800px) {
-    .gallery-column {
-        flex: 50%;
-    }
+  .gallery-column {
+    width: 50%;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    .gallery-column {
-        flex: 100%;
-    }
+  .gallery-column {
+    width: 100%;
+  }
 }
