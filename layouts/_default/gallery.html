@@ -12,20 +12,22 @@
 		
 		<div class="gallery">
 			{{ if .File.Dir }}
-				{{ $basename := (print "/events/images/" .Params.eventNumber "/") }}
-				{{ if (fileExists (print "./assets" $basename)) }}
-					{{ range (readDir (print "./assets" $basename )) }}
-						{{$imageName := index (split .Name ".") 0}}
+				{{ $basePath := print "events/images/" .Params.eventNumber "/*" }}
+				{{ $images := resources.Match $basePath }}
+				{{ range $images }}
+					{{ $img := resources.GetMatch . }}
+
+					{{ if and $img (eq $img.MediaType.SubType "jpeg") }}  {{/* Ensure it's an image */}}
 						<div class="gallery-column">
-							{{ with resources.Get (print ($basename | relURL) .Name) }}
-								<a href="{{ .RelPermalink }}" target="_blank">
-								{{ with .Resize "300x" }}
+							<a href="{{ $img.RelPermalink }}" target="_blank">
+								{{ with $img.Resize "300x" }}
 									<img src="{{ .RelPermalink }}" height="150" />
 								{{ end }}
 
-								{{ $imageName }}
+								{{ $filename := path.Base $img }}
+								{{ $filename }}
 							</a>
-							{{ end }}
+
 						</div>
 				
 					{{ end }}
