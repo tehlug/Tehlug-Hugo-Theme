@@ -17,7 +17,7 @@
 				{{ range $images }}
 					{{ $img := resources.GetMatch . }}
 
-					{{ if and $img (eq $img.MediaType.SubType "jpeg") }}  {{/* Ensure it's an image */}}
+					{{ if and $img (or (eq $img.MediaType.SubType "jpeg") (eq $img.MediaType.SubType "webp")  (eq $img.MediaType.SubType "png")) }}  {{/* Ensure it's an image */}}
 						<div class="gallery-column">
 							<a href="{{ $img.RelPermalink }}" target="_blank">
 								{{ with $img.Resize "300x" }}
